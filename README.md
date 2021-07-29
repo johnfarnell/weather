@@ -1,7 +1,6 @@
 # Introduction to the WEATHER app
 
-Upon starting the application, the user is invited to enter search criteria for the location (building, city, suburb etc) that in which they are interested
-in. In the event that the system finds more than one location, the user will then be invited to select from a drop-down list. 
+Upon starting the application, the user is invited to enter search criteria for the location (building, city, suburb etc) of particular interest. In the event that the system finds more than one location for the search criteria, the user will then be invited to select from a drop-down list. 
 
 Once a location is identified as the one of interest, a list of the upcoming 7 day weather forecast is presented.
 
@@ -18,7 +17,7 @@ Assuming node (12.18.2) and typescript(4.3.5) is installed, this codebase can be
 
 # Technical
 
-This application has been written using typescript(4.3.5) using react, react-redux, redux-thunk and relies on the styled-components for easy to maintain components. 
+This application has been written using typescript(4.3.5) with react, react-redux, redux-thunk and relies on the styled-components for easy to maintain components. 
 I have not included test cases and focused more on the code development in the time I have taken. I understood this to be acceptable for the purposes of the 
 code exercise. I have designed the code to allow for unit testing should this be an issue.
 
