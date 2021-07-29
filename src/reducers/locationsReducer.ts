@@ -12,6 +12,8 @@ const defaultState: LocationsState = {
   loading: false
 }
 
+// All of the state updates required as part of loading the one or more locations that match the user entered query
+
 const locationsReducer = (state: LocationsState = defaultState, action: LocationActionTypes) : LocationsState => {
  switch (action.type) {
     case LOCATION_LOADING_FAIL: 
@@ -27,6 +29,8 @@ const locationsReducer = (state: LocationsState = defaultState, action: Location
         loading: true
       }
     case LOCATION_LOADING_SUCCESS: {
+      // Note, that after a successful load of matching locations, if there is only ONE 
+      // location found, automatically make it the selected one
       const selectedLocation = action.payload.length === 1 ? action.payload[0] : defaultState.selectedLocation
       return {
         ...state,

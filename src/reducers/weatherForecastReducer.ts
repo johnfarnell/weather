@@ -11,6 +11,7 @@ const defaultState: WeatherForecastState = {
   loading: false
 }
 
+// All of the state updates required as part of finding forecasts for the selected location
 const weatherForecastReducer = (state: WeatherForecastState = defaultState, action: WeatherLoadingActionTypes) : WeatherForecastState => {
  switch (action.type) {
     case WEATHER_LOADING_FAIL: 

@@ -40,7 +40,7 @@ export const getDailyWeatherForecasts = (lat: string, lon: string) => async (dis
             main: w.main
           }
         })
-       return {
+        return {
           dt: d.dt,
           temp, 
           weather
