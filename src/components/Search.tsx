@@ -113,10 +113,10 @@ const getLocations = (
       }
       return (
         <Fragment>
-          <label className="select">Choose A Location matching your search:</label>
+          <label className="select">Select a matching Location :</label>
           <select disabled={loading} onChange={(event) => selectedEvent(event.target.value, selectLocation, locationsLoc)}>
-            {/* Add an empty top option  */}
-              <option key={"blank_select"} value={''}>Please select a location ......</option>
+            {/* Add an empty top option, but only if there is a need to select from multiple choices  */}
+                { locationsLoc.length > 0 && <option key={"blank_select"} value={''}>Please select ONE of the locations that match your search ......</option> }
             {
                 locations?.map(l => {
                   // mark as "selected" if it matches the current location
@@ -133,6 +133,7 @@ const getLocations = (
 
 export const Search = (props: SearchPropsType) => {
     const { query, setQuery, search, locations, selectedLocation, loading, selectLocation} = props
+    const disableButton = loading || !query || !query.trim()
     return (
     <SearchGrid locations={locations} selectedLocation={selectedLocation} loading={loading}>
       <label>Search For A Location :</label>
@@ -142,8 +143,8 @@ export const Search = (props: SearchPropsType) => {
         value={query} 
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)}
       />
-      <button disabled={loading} onClick={() => search(query)}>Search</button>
+      <button disabled={disableButton} onClick={() => search(query)}>Search</button>
       {getLocations(selectedLocation, locations, loading, selectLocation )}
-    </SearchGrid>
+     </SearchGrid>
     )
 }
