@@ -1,7 +1,7 @@
 import styled from "styled-components"; 
 const switchCursor = (props: {loading: boolean}) => {
+  // Show the cursor if anything is loading
   if (props.loading) {
-    //  console.log('OH WE LOADING')
       return 'cursor: wait;'
   }
 

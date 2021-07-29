@@ -14,9 +14,16 @@ export const getDailyWeatherForecasts = (lat: string, lon: string) => async (dis
       type: WEATHER_LOADING
     })
  
-    const params = new URLSearchParams([['appid', OPEN_WEATHER_KEY], ['lat', lat], ['lon', lon], ['units', 'metric'], ['exclude', 'current,minutely,hourly']]);
+    const params = new URLSearchParams([
+      ['appid', OPEN_WEATHER_KEY], 
+      ['lat', lat], 
+      ['lon', lon], 
+      ['units', 'metric'], 
+      ['exclude', 'current,minutely,hourly']
+    ]);
     const res = await axios.get<Weather>(`https://api.openweathermap.org/data/2.5/onecall`, { params })
 
+    //Just map the required data
     const payload = {
       lat: res.data.lat,
       lon: res.data.lon,
@@ -33,15 +40,13 @@ export const getDailyWeatherForecasts = (lat: string, lon: string) => async (dis
             main: w.main
           }
         })
-      //  weather = [...weather, {id: 8123987213, description: "PISS", main: "Realiy Ioss"}, {id: 8123987214, description: "More PISS", main: "Cats and Dogs"}]
-        return {
+       return {
           dt: d.dt,
           temp, 
           weather
         }
       })
     }
-  //  console.log({payload})
 
     dispatch( {
       type:WEATHER_LOADING_SUCCESS,

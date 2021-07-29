@@ -20,13 +20,9 @@ export const getLongitudeAndLatitudes = (query: string) => async (dispatch: Disp
       type: LOCATION_LOADING
     })
 
-    //https://eu1.locationiq.com/v1/search.php?key={API_KEY}&q={LOCATION}&format=json 
-    //https://api.openweathermap.org/data/2.5/onecall?lat={LAT}&lon={LON}&units=metric&  exclude=current,minutely,hourly&appid={API_KEY} 
  
     const params = new URLSearchParams([['key', LOCATION_KEY], ['q', query], ['format', 'json']]);
-    //const res = await axios.get<Location[]>(`https://jsonplaceholder.typicode.com/posts?userId=${query}`)
     const res = await axios.get<Location[]>(`https://eu1.locationiq.com/v1/search.php`, { params })
-  //  console.log({res})
 
     let payload: Location[] = res.data.map((l) => (
       { 
@@ -45,6 +41,7 @@ export const getLongitudeAndLatitudes = (query: string) => async (dispatch: Disp
 
   } catch (e) {
     console.log({e})
+    // If we get a 404, nothing was found for the query
     if (e.response.status === 404) {
       dispatch( {
         type: LOCATION_LOADING_FAIL,

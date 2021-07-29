@@ -22,4 +22,5 @@ export type LocationLoadingFail = {
   type: typeof LOCATION_LOADING_FAIL
   payload: string
 }
+
 export type LocationActionTypes = LocationLoadingSuccess | LocationLoading | LocationSelected | LocationLoadingFail | ErrorClear

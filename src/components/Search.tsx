@@ -19,6 +19,7 @@ type SearchGridPropsType = {
 }
 
 const visible = (props : { locations: Location[] | undefined, selectedLocation:Location| undefined   } ) : string => {
+  // If we have no locations to choose from, just hide this element
   if (!!props.locations && (props.locations.length > 0)) {
     return ''
   }
@@ -91,13 +92,10 @@ const SearchGrid = styled.div<SearchGridPropsType>`
     }
   `
 const selectedEvent = (value : string, selectLocation: (location: Location) => void, locations: Location[]) => {
- // console.log({value})
   if (value !== '') {
     const selectedLocation = locations.find((location) => {
-  //    console.log({placeId: location.place_id})
       return location.place_id === value
     })
-    console.log({selectedLocation})
     if (!!selectedLocation) {
       selectLocation(selectedLocation)
     }
@@ -117,9 +115,11 @@ const getLocations = (
         <Fragment>
           <label className="select">Choose A Location matching your search:</label>
           <select disabled={loading} onChange={(event) => selectedEvent(event.target.value, selectLocation, locationsLoc)}>
-            <option key={"blank_select"} value={''}>Please select a location ......</option>
+            {/* Add an empty top option  */}
+              <option key={"blank_select"} value={''}>Please select a location ......</option>
             {
                 locations?.map(l => {
+                  // mark as "selected" if it matches the current location
                     const selected = selectedLocation && selectedLocation.place_id === l.place_id 
                     return (
                       <option key={l.place_id} value={l.place_id} selected={selected}>{l.display_name}</option>

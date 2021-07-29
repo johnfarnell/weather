@@ -5,12 +5,11 @@ type ErrorType = {
 }
 
 const errorVisible = (props: { message: string}) : string => {
-  console.log({errorV: props.message})
+  //Hide this component, if there is no error message
   if (!!props.message) {
     return ''
   } else {
     return 'visibility: hidden;'
-
   }
 }
 
@@ -22,7 +21,6 @@ const ErrorDiv = styled.div<ErrorType>`
 `
 
 export const Error = (props: { message: string}) => {
-    console.log({messageXXXX: props.message})
     return (
       <ErrorDiv message={props.message}>
           <label>{props.message}</label>

@@ -5,7 +5,6 @@ import { WEATHER_LOADING_FAIL } from "../actions/weather/actiontypes"
 const errorReducer = (state: string = '', action: ErrorActionTypes) : string => {
  switch (action.type) {
     case LOCATION_LOADING_FAIL: {
-      console.log({mesag: action.payload})
       return action.payload
     }
     case WEATHER_LOADING_FAIL: 
